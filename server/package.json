@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:watch": "nodemon",
+    "start:watch": "concurrently \"nodemon\" \"yarn start:typeorm\"",
+    "start:typeorm": "cd orm && yarn start",
     "prestart:prod": "tsc",
     "start:prod": "node dist/main.js",
     "release": "standard-version"

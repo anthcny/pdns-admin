@@ -2,6 +2,7 @@ import { Component, UnauthorizedException } from '@nestjs/common';
 
 import {SignInDto, SignUpDto, VerifyTokenDto, TokenDto} from '../dto';
 import {User} from '../entities';
+import {findUser} from '../../../orm/src/operations/User';
 import {DuplicateRegistrationException} from '../exceptions/duplicate-registration.exception';
 import {sign} from 'jsonwebtoken';
 import { UuidService } from './uuid.service';
@@ -33,24 +34,27 @@ export class SignService {
 			if (existing)
 				throw new DuplicateRegistrationException();
 			const {email, password} = dto;
-			newUser.email = dto.email;
-			newUser.password = dto.password;
+			newUser.email = email;
+			newUser.password = password;
 		}
-		this.users.push(newUser);
+		// this.users.push(newUser);
 	}
 
 	async signIn(dto: SignInDto) {
-		let user: User = null;
-		if (dto.isMobile) {
+		let user = null;
+		const {isMobile, email, password} = dto;
+		if (isMobile) {
 			user = this.users.find(u => (
 				u.deviceId === dto.deviceId
 				&& u.phone === dto.phone
 			));
 		} else {
 			user = this.users.find(u => (
-				u.email.toLowerCase() === dto.email.toLowerCase()
-				&& u.password === dto.password
+				u.email.toLowerCase() === email.toLowerCase()
+				&& u.password === password
 			));
+
+			// user = await findUser({ where: { email } });
 		}
 		if (!user)
 				throw new UnauthorizedException();

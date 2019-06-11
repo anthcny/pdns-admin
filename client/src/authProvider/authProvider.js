@@ -1,12 +1,20 @@
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'react-admin';
+import axios from 'axios';
 
 export default (type, params) => {
     // called when the user attempts to log in
     if (type === AUTH_LOGIN) {
-        const { username } = params;
-        localStorage.setItem('username', username);
-        return fetch('/api/test/ok').then(r => r.text()).then(r => console.log('login '+r));
-        // accept all username/password combinations
+        const { username, password } = params;
+        console.log('LOGIN TRY', username, password);
+        // localStorage.setItem('username', username);
+        fetch('/api/test/ok').then(r => r.text()).then(r => console.log('login '+r));
+        axios.post('/api/sign/in', {
+            email: username,
+            password,
+        })
+        .then(r => console.log('LOGIN success! Token: ', r))
+        .catch(e => console.log('Login failed', e));
+
         return Promise.resolve();
     }
     // called when the user clicks on the logout button

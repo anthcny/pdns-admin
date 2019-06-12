@@ -1,0 +1,9 @@
+{
+    "users": {
+        "root": {
+            "uid": "000",
+            "password": "root",
+            "token": null
+        }
+    }
+}

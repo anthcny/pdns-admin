@@ -10,7 +10,7 @@ export class SignInDto {
 
 	// web
 	@IsOptional() @IsString()
-	email?: string;
+	username?: string;
 	@IsOptional() @IsString()
 	password?: string;
 }

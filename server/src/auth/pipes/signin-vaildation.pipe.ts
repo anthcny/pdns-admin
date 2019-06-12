@@ -32,9 +32,9 @@ export class SignInValidationPipe implements PipeTransform<any> {
 
 	webUserValidate(dto: SignInDto) {
 		const valid =
-			this.validator.isString(dto.email)
-			&& this.validator.isString(dto.password)
-			&& this.validator.isEmail(dto.email);
+			this.validator.isString(dto.username)
+			&& this.validator.isString(dto.password);
+			// && this.validator.isEmail(dto.email);
 		if (!valid)
 			throw new BadRequestException();
 	}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:watch": "concurrently \"nodemon\" \"yarn start:typeorm\"",
+    "start:watch": "concurrently \"nodemon\"",
     "start:typeorm": "cd orm && yarn start",
     "prestart:prod": "tsc",
     "start:prod": "node dist/main.js",
@@ -24,6 +24,7 @@
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.5",
     "jsonwebtoken": "^8.2.0",
+    "node-json-db": "^0.11.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.7",
     "typescript": "^2.7.2",

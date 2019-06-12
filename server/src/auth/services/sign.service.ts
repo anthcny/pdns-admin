@@ -6,10 +6,20 @@ import {findUser} from '../../../orm/src/operations/User';
 import {DuplicateRegistrationException} from '../exceptions/duplicate-registration.exception';
 import {sign} from 'jsonwebtoken';
 import { UuidService } from './uuid.service';
+import JsonDB = require('node-json-db');
+import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
+
+
+var db = new JsonDB(new Config("DataBase", true, true, '/'));
+db.push('/users', { 'root': {
+	uid: '000',
+	password: 'root',
+	token: null,
+}}, false);
 
 @Component()
 export class SignService {
-	protected users: User[] = [];
+	protected users = db.getData("/users") || {};
 
 	constructor(
 		protected uuidService: UuidService,
@@ -42,23 +52,20 @@ export class SignService {
 
 	async signIn(dto: SignInDto) {
 		let user = null;
-		const {isMobile, email, password} = dto;
+		const {isMobile, username, password} = dto;
 		if (isMobile) {
-			user = this.users.find(u => (
-				u.deviceId === dto.deviceId
-				&& u.phone === dto.phone
-			));
+			// user = this.users.find(u => (
+			// 	u.deviceId === dto.deviceId
+			// 	&& u.phone === dto.phone
+			// ));
 		} else {
-			user = this.users.find(u => (
-				u.email.toLowerCase() === email.toLowerCase()
-				&& u.password === password
-			));
-
-			// user = await findUser({ where: { email } });
+			user = this.users[username];
+			user = user && user.password === password ? user : null;
 		}
 		if (!user)
 				throw new UnauthorizedException();
 		const token = sign({payload: new TokenDto(user.uid)}, 'secret');
+		db.push(`/users/${username}`, { token }, false);
 		return {token};
 	}
 }

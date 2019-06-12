@@ -5,17 +5,22 @@ export default (type, params) => {
     // called when the user attempts to log in
     if (type === AUTH_LOGIN) {
         const { username, password } = params;
+        let success = false;
         console.log('LOGIN TRY', username, password);
-        // localStorage.setItem('username', username);
-        fetch('/api/test/ok').then(r => r.text()).then(r => console.log('login '+r));
-        axios.post('/api/sign/in', {
-            email: username,
+        // fetch('/api/test/ok').then(r => r.text()).then(r => console.log('login '+r));
+        return axios.post('/api/sign/in', {
+            username,
             password,
         })
-        .then(r => console.log('LOGIN success! Token: ', r))
+        .then(res => {
+            const { data: { token } } = res;
+            localStorage.setItem('username', username);
+            localStorage.setItem('token', token);
+            return console.log('LOGIN SUCCESS!');
+        })
         .catch(e => console.log('Login failed', e));
-
-        return Promise.resolve();
+        // localStorage.setItem('username', username);
+        // return Promise.resolve();
     }
     // called when the user clicks on the logout button
     if (type === AUTH_LOGOUT) {
@@ -33,6 +38,7 @@ export default (type, params) => {
     }
     // called when the user navigates to a new location
     if (type === AUTH_CHECK) {
+        console.log('AUTH_CHECK !_!');
         return localStorage.getItem('username')
             ? Promise.resolve()
             : Promise.reject();

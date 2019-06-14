@@ -2,24 +2,18 @@ import { Component, UnauthorizedException } from '@nestjs/common';
 
 import {SignInDto, SignUpDto, VerifyTokenDto, TokenDto} from '../dto';
 import {User} from '../entities';
-import {findUser} from '../../../orm/src/operations/User';
 import {DuplicateRegistrationException} from '../exceptions/duplicate-registration.exception';
 import {sign} from 'jsonwebtoken';
 import { UuidService } from './uuid.service';
-import JsonDB = require('node-json-db');
-import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
+import { getDB, saveDB } from '../../database/useDB';
 
-
-var db = new JsonDB(new Config("DataBase", true, true, '/'));
-db.push('/users', { 'root': {
-	uid: '000',
-	password: 'root',
-	token: null,
-}}, false);
+let usersDB;
+getDB('users', users => {
+	usersDB = users;
+});
 
 @Component()
 export class SignService {
-	protected users = db.getData("/users") || {};
 
 	constructor(
 		protected uuidService: UuidService,
@@ -29,20 +23,20 @@ export class SignService {
 		const newUser: User = new User();
 		newUser.createdAtUtc = Date.now();
 		newUser.uid = this.uuidService.create();
-		newUser.id = this.users.length;
+		// newUser.id = this.users.length;
 		if (dto.isMobile) {
-			const existing = this.users.find(u => (
-				u.deviceId === dto.deviceId
-				&& u.phone === dto.phone
-			));
-			if (existing)
-				throw new DuplicateRegistrationException();
-			newUser.phone = dto.phone;
-			newUser.deviceId = dto.deviceId;
+			// const existing = this.users.find(u => (
+			// 	u.deviceId === dto.deviceId
+			// 	&& u.phone === dto.phone
+			// ));
+			// if (existing)
+			// 	throw new DuplicateRegistrationException();
+			// newUser.phone = dto.phone;
+			// newUser.deviceId = dto.deviceId;
 		} else {
-			const existing = this.users.find(u => u.email.toLowerCase() === dto.email.toLowerCase());
-			if (existing)
-				throw new DuplicateRegistrationException();
+			// const existing = this.users.find(u => u.email.toLowerCase() === dto.email.toLowerCase());
+			// if (existing)
+			// 	throw new DuplicateRegistrationException();
 			const {email, password} = dto;
 			newUser.email = email;
 			newUser.password = password;
@@ -59,13 +53,20 @@ export class SignService {
 			// 	&& u.phone === dto.phone
 			// ));
 		} else {
-			user = this.users[username];
+			user = usersDB[username];
 			user = user && user.password === password ? user : null;
 		}
 		if (!user)
 				throw new UnauthorizedException();
-		const token = sign({payload: new TokenDto(user.uid)}, 'secret');
-		db.push(`/users/${username}`, { token }, false);
+		let token;
+		if(user.token){
+			token = user.token;
+		}
+		else {
+			token = usersDB[username].token = sign({payload: new TokenDto(user.uid)}, 'secret');
+			saveDB('users', usersDB);
+		}
+		
 		return {token};
 	}
 }

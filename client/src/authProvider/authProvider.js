@@ -38,7 +38,6 @@ export default (type, params) => {
     }
     // called when the user navigates to a new location
     if (type === AUTH_CHECK) {
-        console.log('AUTH_CHECK !_!');
         return localStorage.getItem('username')
             ? Promise.resolve()
             : Promise.reject();

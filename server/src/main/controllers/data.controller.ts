@@ -1,15 +1,20 @@
 import { Controller, Get, Post, Body, UsePipes, HttpCode } from '@nestjs/common';
 import { DataService } from '../services';
 
-@Controller('api/users')
+@Controller('api/data/')
 export class DataController {
 
     constructor(
 		protected DataService: DataService,
 	) {}
 
-    @Post('get')
-    async getUsers(@Body() params) {
-        return await this.DataService.getUsers(params);
+    @Get('users')
+    async getUsers() {
+        return await this.DataService.getUsers();
     }
+
+    // @Post('get')
+    // async getU(@Body() params) {
+    //     return await this.DataService.getUsers(params);
+    // }
 }

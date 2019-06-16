@@ -1,3 +1,3 @@
-import dataProvider from './dataProvider';
+import {dataProvider} from './dataProvider';
 
 export default dataProvider;

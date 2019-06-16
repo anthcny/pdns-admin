@@ -5,22 +5,21 @@ export default (type, params) => {
     // called when the user attempts to log in
     if (type === AUTH_LOGIN) {
         const { username, password } = params;
-        let success = false;
-        console.log('LOGIN TRY', username, password);
-        // fetch('/api/test/ok').then(r => r.text()).then(r => console.log('login '+r));
+
         return axios.post('/api/sign/in', {
             username,
             password,
         })
         .then(res => {
-            const { data: { token } } = res;
+            const { data: { token, role } } = res;
             localStorage.setItem('username', username);
             localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
             return console.log('LOGIN SUCCESS!');
         })
         .catch(e => console.log('Login failed', e));
-        // localStorage.setItem('username', username);
-        // return Promise.resolve();
+
+
     }
     // called when the user clicks on the logout button
     if (type === AUTH_LOGOUT) {

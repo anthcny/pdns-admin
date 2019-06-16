@@ -1,5 +1,15 @@
 import {IsBoolean, IsOptional, IsInt, IsString, IsEmail, IsMobilePhone} from 'class-validator';
 
+class SignUpHeaders {
+	@IsOptional() @IsString()
+	token?: string;
+	@IsOptional() @IsInt()
+	username?: number;
+	@IsOptional() @IsBoolean()
+	update?: boolean;
+	
+}
+
 export class SignUpDto {
 	// mobile
 	@IsOptional() @IsBoolean()
@@ -15,5 +25,13 @@ export class SignUpDto {
 	@IsOptional() @IsString()
 	email?: string;
 	@IsOptional() @IsString()
+	username?: string;
+	@IsOptional() @IsString()
 	password?: string;
+	@IsOptional() @IsString()
+	role?: string;
+
+	//fast and bad
+	@IsOptional()
+	headers?: SignUpHeaders;
 }

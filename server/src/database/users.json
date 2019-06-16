@@ -2,12 +2,13 @@
 	"root": {
 		"uid": "000",
 		"password": "root",
+		"role": "superadmin",
 		"email": "pdnsadmin@gmail.com",
 		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJVaWQiOiIwMDAifSwiaWF0IjoxNTYwNTE1MTczfQ.0a8y_Ahv8YSfc_DLrbjP1kYnXd11DkpSzyFrq6S0IyQ"
 	},
-	"new": {
-		"username": "unnamed",
-		"password": "unnameddd",
+	"user": {
+		"password": "user",
+		"role": "user",
 		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7fSwiaWF0IjoxNTYwNTE1NDE5fQ.rs2oG2JLXRTCIVMcUisW-f83KaJmGyC0KJefiWAGq2s"
 	}
 }

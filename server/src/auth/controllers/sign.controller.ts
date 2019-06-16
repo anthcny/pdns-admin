@@ -12,7 +12,7 @@ export class SignController {
 
 	/** create new user */
 	@Post('up')
-	@UsePipes(new SignUpValidationPipe())
+	// @UsePipes(new SignUpValidationPipe())
 	async signUp(@Body() signUpDto: SignUpDto) {
 		return await this.signService.signUp(signUpDto);
 	}

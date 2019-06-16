@@ -20,6 +20,7 @@ export class SignService {
 	) {}
 
 	async signUp(dto: SignUpDto) {
+		console.log('sing up dto', dto)
 		const newUser: User = new User();
 		newUser.createdAtUtc = Date.now();
 		newUser.uid = this.uuidService.create();
@@ -34,12 +35,26 @@ export class SignService {
 			// newUser.phone = dto.phone;
 			// newUser.deviceId = dto.deviceId;
 		} else {
-			// const existing = this.users.find(u => u.email.toLowerCase() === dto.email.toLowerCase());
-			// if (existing)
-			// 	throw new DuplicateRegistrationException();
-			const {email, password} = dto;
+			
+			const {email, password, role, username} = dto;
+			const token = dto.headers && dto.headers.token;
+			const update = dto.headers && dto.headers.update;
 			newUser.email = email;
 			newUser.password = password;
+			newUser.role = role;
+			let isUpdate = false;
+			console.log('sign dto', dto);
+			const existing = usersDB[username];
+			if(existing && update && token && usersDB[dto.headers.username].token === token){
+				usersDB[username].token = null,
+				isUpdate = true;
+			}
+			console.log('isUpdate', isUpdate);
+			if (existing && !isUpdate)
+				throw new DuplicateRegistrationException();
+			usersDB[username] = newUser;
+			saveDB('users', usersDB);
+			return isUpdate ? 'user updated!' : 'registration succes';
 		}
 		// this.users.push(newUser);
 	}
@@ -66,7 +81,7 @@ export class SignService {
 			token = usersDB[username].token = sign({payload: new TokenDto(user.uid)}, 'secret');
 			saveDB('users', usersDB);
 		}
-		
-		return {token};
+		const role = usersDB[username].role;
+		return {token, role};
 	}
 }

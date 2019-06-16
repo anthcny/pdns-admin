@@ -1,0 +1,14 @@
+{
+    "users": [
+        { "id": 0, "username": "Hello, world!", "email": "hello@mail.ru" },
+        { "id": 1, "username": "Heldsffsdf", "email": "helopoaopaolo@mail.ru" }
+    ],
+    "myUsers": [
+        { "id": 0, "username": "loloaspd!", "email": "axaxax@mail.ru" },
+        { "id": 1, "username": "KIANO", "email": "zopaertag@mail.ru" }
+    ],
+    "auaua": [
+        { "id": 0, "username": "Hello, world!", "email": "hello@mail.ru" },
+        { "id": 1, "username": "Heldsffsdf", "email": "helopoaopaolo@mail.ru" }
+    ]
+}

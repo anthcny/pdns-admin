@@ -9,7 +9,7 @@ export const getDB = (name, cb) => {
 }
 
 export const saveDB = async (name, data) => {
-    db = JSON.stringify(db, null, '\t');
+    data = JSON.stringify(data, null, '\t');
     return fs.writeFile(__dirname + `/${name}.json`, data, 'utf-8', (err, data) => {
         if (err) throw err
         return true;

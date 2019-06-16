@@ -7,6 +7,11 @@ import UserIcon from '@material-ui/icons/People';
 import dataProvider from './dataProvider';
 import UserCreate from './components/UserCreate';
 import UserEdit from './components/UserEdit';
+import DomainList from './components/DomainList';
+import DomainCreate from './components/DomainCreate';
+import DomainEdit from './components/DomainEdit';
+import DomainShow from './components/DomainShow';
+import RecordCreate from './components/RecordCreate';
 import { permissionsCheck } from './helpers';
 
 const history = createBrowserHistory();
@@ -18,15 +23,16 @@ const App = () => (
     history={history}
     authProvider={authProvider}
   >
-      {/* <Resource name="users" list={ListGuesser} edit={EditGuesser}/> */}
       <Resource 
-        name="users" 
-        list={UserList} 
-        icon={UserIcon} 
-        show={ShowGuesser} 
-        create={UserCreate}
-        edit={UserEdit}
+        name="users" list={UserList} 
+        icon={UserIcon} show={ShowGuesser} 
+        create={UserCreate} edit={UserEdit}
       />
+      <Resource 
+        name="domains" list={DomainList} 
+        show={DomainShow} create={DomainCreate} edit={DomainEdit}
+      />
+      <Resource name="records" create={RecordCreate}/>
   </Admin>
 )
 

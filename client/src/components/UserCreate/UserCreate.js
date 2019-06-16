@@ -4,7 +4,7 @@ import { permissionsCheck } from '../../helpers';
 
 export const UserCreate = props => (
     <Create {...props} title="Create new user">
-        <SimpleForm validate={validateUserCreation} redirect="users">
+        <SimpleForm validate={validateUserCreation} redirect="users" defaultValue={userDefaultValue}>
             <TextInput source="username" />
             <TextInput source="password" type="password"/>
             <SelectInput source="role" label="Permissions" choices={getPermissionChoices()} />
@@ -39,3 +39,5 @@ const getPermissionChoices = () => {
     }
     return choices;
 }
+
+const userDefaultValue = { role: 'user' };

@@ -10,5 +10,12 @@
 		"password": "user",
 		"role": "user",
 		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7fSwiaWF0IjoxNTYwNTE1NDE5fQ.rs2oG2JLXRTCIVMcUisW-f83KaJmGyC0KJefiWAGq2s"
+	},
+	"fsfa": {
+		"createdAtUtc": 1560706352421,
+		"uid": "b8da8370-905c-11e9-8ecc-356f7e269424",
+		"email": "asdfdf",
+		"password": "asdf",
+		"role": "user"
 	}
 }

@@ -3,12 +3,17 @@
         { "id": 0, "username": "Hello, world!", "email": "hello@mail.ru" },
         { "id": 1, "username": "Heldsffsdf", "email": "helopoaopaolo@mail.ru" }
     ],
-    "myUsers": [
-        { "id": 0, "username": "loloaspd!", "email": "axaxax@mail.ru" },
-        { "id": 1, "username": "KIANO", "email": "zopaertag@mail.ru" }
+    "domains": [
+        { "id": 0, "name": "example.com", "type": "master", "primary": "ns1.example.com", "dnssec": true },
+        { "id": 1, "name": "pstu.ru", "type": "master", "primary": "ns1.example.com", "dnssec": false }
     ],
-    "auaua": [
-        { "id": 0, "username": "Hello, world!", "email": "hello@mail.ru" },
-        { "id": 1, "username": "Heldsffsdf", "email": "helopoaopaolo@mail.ru" }
+    "records": [
+        {  "domain_id": 1, "name": "record1.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A" },
+        {  "domain_id": 1, "name": "record2.pstu.ru", "content": "194.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA" },
+        {  "domain_id": 1, "name": "record3.pstu.ru", "content": "194.0.10.2", "disabled": true, "ttl": 86400, "type": "NS" },
+        {  "domain_id": 0, "name": "record1.example.org", "content": "192.0.5.1", "disabled": false, "ttl": 86400, "type": "A" },
+        {  "domain_id": 0, "name": "record2.example.org", "content": "192.0.5.3", "disabled": false, "ttl": 86400, "type": "SOA" },
+        {  "domain_id": 0, "name": "record3.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS" }
     ]
+
 }

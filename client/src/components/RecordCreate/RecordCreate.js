@@ -1,9 +1,10 @@
 import React from 'react';
 import { 
     Create, SimpleForm, TextInput, SelectInput, BooleanInput, 
-    Toolbar, SaveButton, RefreshButton
 } from 'react-admin';
 import { parse } from "query-string";
+import moment from 'moment';
+moment.locale('ru');
 
 export const RecordCreate = props => {
     const { domain_id: domain_id_string } = parse(props.location.search);
@@ -44,22 +45,17 @@ const validateRecordCreation = (values) => {
     return errors
 };
 
+const username = localStorage.getItem('username');
+
 const defaultValues = {
     type: 'A',
     disabled: false,
+    created_at: moment().format('MMMM Do YYYY, h:mm a') + `${username && (' by ' + username)}`,
+    last_modified: 'no modified',
 };
 
 const typeChoices = [
     { id: 'A', name: 'A' },
     { id: 'NS', name: 'NS' },
     { id: 'MX', name: 'MX' },
-]
-
-// const RecordCreateToolbar = props => {
-//     // const { data } = props;
-//     return (
-//     <Toolbar {...props}>
-//        <SaveButton/>
-//        <RefreshButton/>
-//     </Toolbar>
-// )};
+];

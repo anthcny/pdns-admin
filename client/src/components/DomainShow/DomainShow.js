@@ -19,6 +19,9 @@ export const DomainShow = props => {
                 <Tab label="Domain">
                     <TextField source="name" />
                     <BooleanField source="dnssec" label="DNSSEC"/>
+                    <TextField source="author" />
+                    <TextField source="created_at" label='Created at' />
+                    <TextField source="last_modified" label='Last modified' />
                 </Tab>
                 <Tab label="Records">
                     <ReferenceManyField reference="records" target="domain_id" addLabel={false}>

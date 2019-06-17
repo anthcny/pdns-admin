@@ -2,6 +2,8 @@ import React from 'react';
 import { Edit, SimpleForm, TextInput, SelectInput, BooleanInput } from 'react-admin';
 import {DomainShowActions} from '../DomainShow/DomainShowActions';
 import { parse } from "query-string";
+import moment from 'moment';
+moment.locale('ru');
 
 export const RecordEdit = props => {
     const { domain_id: domain_id_string } = parse(props.location.search);
@@ -16,6 +18,7 @@ export const RecordEdit = props => {
             <SimpleForm 
                 validate={validateRecordEdition} 
                 redirect={redirect}
+                defaultValue={defaultValues}
             >
                 <TextInput source="name" />
                 <SelectInput source="type" choices={typeChoices}/>
@@ -41,6 +44,12 @@ const validateRecordEdition = (values) => {
         errors.content = ['Required'];
     }
     return errors
+};
+
+const username = localStorage.getItem('username');
+
+const defaultValues = {
+    last_modified: moment().format('MMMM Do YYYY, h:mm a') + `${username && (' by ' + username)}`,
 };
 
 const typeChoices = [

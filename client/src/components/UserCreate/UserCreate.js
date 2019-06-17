@@ -1,6 +1,8 @@
 import React from 'react';
 import { Create, SimpleForm, TextInput, SelectInput } from 'react-admin';
 import { permissionsCheck } from '../../helpers';
+import moment from 'moment';
+moment.locale('ru');
 
 export const UserCreate = props => (
     <Create {...props} title="Create new user">
@@ -40,4 +42,9 @@ const getPermissionChoices = () => {
     return choices;
 }
 
-const userDefaultValue = { role: 'user' };
+const username = localStorage.getItem('username');
+
+const userDefaultValue = { 
+    created_at: moment().format('MMMM Do YYYY, h:mm a') + `${username && (' by ' + username)}`,
+    role: 'user' 
+};

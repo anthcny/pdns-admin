@@ -17,5 +17,13 @@
 		"email": "asdfdf",
 		"password": "asdf",
 		"role": "user"
+	},
+	"admin": {
+		"createdAtUtc": 1560765414604,
+		"uid": "3ca86ee0-90e6-11e9-a34e-0575ca47e5e7",
+		"email": "admin@pdns.com",
+		"password": "admin",
+		"role": "admin",
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJVaWQiOiIzY2E4NmVlMC05MGU2LTExZTktYTM0ZS0wNTc1Y2E0N2U1ZTcifSwiaWF0IjoxNTYwNzY1NDM2fQ.I7r6tcCLeaK_8WtiikM63J15nFT2HIiCFObhxpM2KYQ"
 	}
 }

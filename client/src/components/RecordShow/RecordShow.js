@@ -19,6 +19,8 @@ export const RecordShow = props => {
                 <TextField source="ttl" label="TTL"/>
                 <TextField source="content" />
                 <BooleanField source="disabled" label="Disabled"/>
+                <TextField source="created_at" label='Created at' />
+                <TextField source="last_modified" label='Last modified' />
             </SimpleShowLayout>
         </Show>
 )};

@@ -12,6 +12,8 @@ import {
     DELETE_MANY,
 } from 'react-admin';
 
+let db = {};
+
 /* eslint-disable no-console */
 function log(type, resource, params, response) {
     if (console.group) {
@@ -131,10 +133,17 @@ export default (data, loggingEnabled = false) => {
         if (loggingEnabled) {
             log(type, resource, params, response);
         }
+        saveLocal(collection);
         return new Promise(resolve => resolve(response));
     };
 };
 
+const saveLocal = collection => {
+    const {items, name} = collection;
+    db[name] = items;
+    const saveDB = JSON.stringify(db);
+    return localStorage.setItem('data', saveDB);
+}
 
 const handleUserAction = async (resource, params, type) => {
     const dto = {...params.data};
@@ -155,4 +164,9 @@ const handleUserAction = async (resource, params, type) => {
             })
             .catch(e => console.log('Create failed', e));
     }
+}
+
+const handleAction = async (resource, params, type) => {
+    if(resource !== 'mydomains') return;
+
 }

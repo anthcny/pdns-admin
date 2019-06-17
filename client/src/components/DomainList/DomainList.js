@@ -8,6 +8,7 @@ import { permissionsCheck } from '../../helpers';
 
 export const DomainList = props => {
     const role = permissionsCheck();
+    {console.log('seseeeee', props)}
     return (
         <List 
             {...props} 
@@ -24,8 +25,8 @@ export const DomainList = props => {
                         <TextField source="primary"/>
                         {/* {role === 'user' && <ShowButton/>} */}
                         <ShowButton/>
-                        {role === 'admin' || role === 'superadmin' && <EditButton />}
-                        {role === 'admin' || role === 'superadmin' && <DeleteButton />}
+                        {(role === 'admin' || role === 'superadmin') && <EditButton />}
+                        {(role === 'admin' || role === 'superadmin') && <DeleteButton />}
                     </Datagrid>
                 }
                 small={

@@ -7,7 +7,7 @@ import { permissionsCheck } from '../../helpers';
 export const UserList = props => {
     const role = permissionsCheck();
     return (
-        <List {...props} actions={<UserActions />} bulkActionButtons={<UserBulkActions />}>
+        <List {...props} actions={<UserActions />} bulkActionButtons={<UserBulkActions/>} perPage={5}>
             <Responsive
                 medium={
                     <Datagrid>
@@ -16,7 +16,7 @@ export const UserList = props => {
                         <TextField source="role" />
                         <TextField source="email" />
                         <ShowButton/>
-                        {role === 'admin' || role === 'superadmin' && <EditButton />}
+                        {(role === 'admin' || role === 'superadmin') && <EditButton />}
                     </Datagrid>
                 }
                 small={

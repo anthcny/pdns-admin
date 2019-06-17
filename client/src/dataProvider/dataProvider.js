@@ -4,6 +4,9 @@ import db from '../db.json';
 
 console.log('database', db);
 
+// let localdb = localStorage.getItem('db');
+// localdb = JSON.parse(localdb);
+
 export const dataProvider = fakeDataProvider(db);
 
 // // in myRestProvider.js

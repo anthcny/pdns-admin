@@ -15,7 +15,7 @@ export const ManagerCreate = props => {
                 validate={validateRecordCreation} 
                 redirect={redirect} 
                 defaultValue={{domain_id}}
-                label=""
+                label="Add manager to domain"
             >
                 <TextInput source="username" />
             </SimpleForm>

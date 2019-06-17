@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 import authProvider from './authProvider';
 import UserList from './components/UserList';
 import UserIcon from '@material-ui/icons/People';
+import HistoryIcon from '@material-ui/icons/History';
 import dataProvider from './dataProvider';
 import UserCreate from './components/UserCreate';
 import UserEdit from './components/UserEdit';
@@ -15,6 +16,7 @@ import RecordCreate from './components/RecordCreate';
 import RecordEdit from './components/RecordEdit';
 import RecordShow from './components/RecordShow';
 import ManagerCreate from './components/ManagerCreate';
+import HistoryList from './components/HistoryList';
 import { permissionsCheck } from './helpers';
 
 const history = createBrowserHistory();
@@ -39,6 +41,7 @@ const App = () => (
       />
       <Resource name="records" create={RecordCreate} edit={RecordEdit} show={RecordShow}/>
       <Resource name="managers" create={ManagerCreate}/>
+      <Resource name="history" list={HistoryList} icon={HistoryIcon}/>
   </Admin>
 )
 

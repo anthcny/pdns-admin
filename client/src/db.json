@@ -23,6 +23,9 @@
         {"domain_id": 0, "username": "newuser"},
         {"domain_id": 0, "username": "admin"},
         {"domain_id": 0, "username": "pdnsadmin"}
+    ],
+    "history": [
+        {  "domain_id": 1, "target": "record", "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Add new user" },
+        {  "domain_id": 0, "target": "record",  "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Create new zone" }
     ]
-
 }

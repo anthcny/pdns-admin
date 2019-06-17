@@ -1,17 +1,23 @@
 import React from 'react';
 import { 
-    Edit, TabbedForm, TextInput, BooleanInput, DeleteButton,
-    ReferenceManyField, Datagrid, EditButton , BooleanField, TextField,
-    FormTab,
+    Edit, TabbedForm, TextInput, BooleanInput, DeleteButton, Link,
+    ReferenceManyField, Datagrid, BooleanField, TextField, FormTab, Button
 } from 'react-admin';
-import {DomainShowActions} from '../DomainShow/DomainShowActions';
+import EditIcon from "@material-ui/icons/Edit";
+import {DomainEditActions} from './DomainEditActions';
 
-export const DomainEdit = props => (
-    <Edit {...props} title="Edit domain" actions={<DomainShowActions/>}>
-        <TabbedForm>
+export const DomainEdit = props => {
+    const {basePath, id} = props;
+
+    return (
+    <Edit {...props} title="Edit domain" actions={<DomainEditActions listLabel='domains'/>}>
+        <TabbedForm validate={validateDomianEdition}>
             <FormTab label="Domain">
                 <TextInput source="name" />
                 <BooleanInput source="dnssec" label="DNSSEC"/>
+                <TextField source="author" />
+                <TextField source="created_at" label='Created at' />
+                <TextField source="last_modified" label='Last modified' />
             </FormTab>
             <FormTab label="Records">
                 <ReferenceManyField reference="records" target="domain_id" addLabel={false}>
@@ -21,14 +27,54 @@ export const DomainEdit = props => (
                         <TextField source="content" />
                         <TextField source="ttl" label="TTL" />
                         <TextField source="type" />
-                        <EditButton />
+                        <RecordEditButton />
                         <DeleteButton/>
                     </Datagrid>
                 </ReferenceManyField>
             </FormTab>
+            <FormTab label="Managers">
+                <ReferenceManyField 
+                    reference="managers" 
+                    target="domain_id" 
+                    label="Users who have access to this domain"
+                    addLabel={true}
+                >
+                    <Datagrid>
+                        <TextField source="username" label="Username"/>
+                        <DeleteButton redirect={`${basePath}/${id}/2`}/>
+                    </Datagrid>
+                </ReferenceManyField>
+            </FormTab>
         </TabbedForm>
+        {/* <SimpleForm validate={validateDomianEdition}>
+            <TextInput source="name" />
+            <BooleanInput source="dnssec" label="DNSSEC"/>
+            <ReferenceArrayInput label="Managers" reference="managers" source="users">
+                <TextInput source="username" label="Username"/>
+                <SelectArrayInput optionText="username" />
+            </ReferenceArrayInput>
+            <TextField source="author" />
+            <TextField source="created_at" label='Created at' />
+            <TextField source="last_modified" label='Last modified' />
+        </SimpleForm> */}
     </Edit>
-);
+)};
+
+const RecordEditButton = props => {
+    const {id, domain_id} = props.record || {};
+
+    return (
+        <Button
+            component={Link}
+            to={{
+                pathname: `/records/${id}`,
+                search: typeof domain_id === 'number' && `?domain_id=${domain_id}&from=edit`
+            }}
+            label="Edit"
+        >
+            <EditIcon />
+        </Button>
+)};
 
 const validateDomianEdition = (values) => {
     const errors = {};

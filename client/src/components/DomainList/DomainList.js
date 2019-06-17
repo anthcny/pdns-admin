@@ -1,7 +1,9 @@
 import React from 'react';
-import { List, Datagrid, TextField, SimpleList, Responsive, EditButton, ShowButton, BooleanField } from 'react-admin';
+import { List, Datagrid, TextField, SimpleList, Responsive,
+     EditButton, ShowButton, BooleanField, DeleteButton, 
+} from 'react-admin';
 import UserActions from '../UserList/UserActions';
-// import UserBulkActions from './UserBulkActions';
+import {DomainBulkActions} from './DomainBulkActions';
 import { permissionsCheck } from '../../helpers';
 
 export const DomainList = props => {
@@ -10,7 +12,7 @@ export const DomainList = props => {
         <List 
             {...props} 
             actions={<UserActions />} 
-            // bulkActionButtons={<UserBulkActions />}
+            bulkActionButtons={<DomainBulkActions />}
         >
             <Responsive
                 medium={
@@ -22,7 +24,8 @@ export const DomainList = props => {
                         <TextField source="primary"/>
                         {/* {role === 'user' && <ShowButton/>} */}
                         <ShowButton/>
-                        {/* {role === 'admin' || role === 'superadmin' && <EditButton />} */}
+                        {role === 'admin' || role === 'superadmin' && <EditButton />}
+                        {role === 'admin' || role === 'superadmin' && <DeleteButton />}
                     </Datagrid>
                 }
                 small={

@@ -14,6 +14,7 @@ import DomainShow from './components/DomainShow';
 import RecordCreate from './components/RecordCreate';
 import RecordEdit from './components/RecordEdit';
 import RecordShow from './components/RecordShow';
+import ManagerCreate from './components/ManagerCreate';
 import { permissionsCheck } from './helpers';
 
 const history = createBrowserHistory();
@@ -32,9 +33,12 @@ const App = () => (
       />
       <Resource 
         name="domains" list={DomainList} 
-        show={DomainShow} create={DomainCreate} edit={DomainEdit}
+        show={DomainShow} 
+        create={permissionsCheck() === 'user' ? null : DomainCreate} 
+        edit={DomainEdit}
       />
       <Resource name="records" create={RecordCreate} edit={RecordEdit} show={RecordShow}/>
+      <Resource name="managers" create={ManagerCreate}/>
   </Admin>
 )
 

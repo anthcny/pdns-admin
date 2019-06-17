@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { BulkDeleteButton } from 'react-admin';
-import {permissionsCheck} from '../../../helpers';
+import {permissionsCheck} from '../../helpers';
 
-export const UserBulkActions = props => {
+export const DomainBulkActions = props => {
     const role = permissionsCheck();
     return (
         <Fragment>

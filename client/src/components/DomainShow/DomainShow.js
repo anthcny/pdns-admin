@@ -2,7 +2,7 @@ import React from 'react';
 import { 
     TabbedShowLayout, Show,
     ReferenceManyField, Datagrid, DeleteButton , BooleanField, TextField,
-    Tab, Button, Link,
+    Tab, Button, Link, SingleFieldList, ChipField
 } from 'react-admin';
 import EditIcon from "@material-ui/icons/Edit";
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
@@ -32,9 +32,16 @@ export const DomainShow = props => {
                             <TextField source="ttl" label="TTL" />
                             <TextField source="type" />
                             <RecordShowButton />
-                            <RecordEditButton />
-                            <DeleteButton redirect={`${basePath}/${id}/show/1`}/>
+                            {/* <RecordEditButton />
+                            <DeleteButton redirect={`${basePath}/${id}/show/1`}/> */}
                         </Datagrid>
+                    </ReferenceManyField>
+                </Tab>
+                <Tab label="Managers">
+                    <ReferenceManyField label='Users who have access to this domain' reference="managers" target="domain_id" addLabel={true}>
+                        <SingleFieldList>
+                            <ChipField source="username"/>
+                        </SingleFieldList>
                     </ReferenceManyField>
                 </Tab>
             </TabbedShowLayout>

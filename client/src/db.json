@@ -5,8 +5,8 @@
         { "id": 2, "username": "admin", "role":"admin",  "email": "admin@pdns.com" }
     ],
     "domains": [
-        { "id": 0, "name": "example.com", "type": "master", "primary": "ns1.example.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "root", "last_modified": "no modified"},
-        { "id": 1, "name": "pstu.ru", "type": "master", "primary": "ns1.example.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "root", "last_modified": "no modified" }
+        { "id": 0, "name": "example.com", "type": "master", "primary": "ns1.example.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "root", "last_modified": "no modified", "users": ["admin","user", "root"]},
+        { "id": 1, "name": "pstu.ru", "type": "master", "primary": "ns1.example.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "root", "last_modified": "no modified", "users": [{"username":"admin"}, {"username":"user"}, {"username":"root"}] }
     ],
     "records": [
         {  "domain_id": 1, "name": "record1.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 17th 2019, 2:44 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
@@ -15,6 +15,14 @@
         {  "domain_id": 0, "name": "record1.example.org", "content": "192.0.5.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 18th 2019, 2:59 pm by root", "last_modified": "June 19th 2019, 2:46 pm by root" },
         {  "domain_id": 0, "name": "record2.example.org", "content": "192.0.5.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 15th 2019, 2:11 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
         {  "domain_id": 0, "name": "record3.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" }
+    ],
+    "managers": [
+        {"domain_id": 1, "username": "admin"},
+        {"domain_id": 1, "username": "root"},
+        {"domain_id": 1, "username": "user"},
+        {"domain_id": 0, "username": "newuser"},
+        {"domain_id": 0, "username": "admin"},
+        {"domain_id": 0, "username": "pdnsadmin"}
     ]
 
 }

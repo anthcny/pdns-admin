@@ -10,9 +10,8 @@ export const UserActions = ({
     return (
     <CardActions>
         {
-            role === 'admin' || role === 'superadmin' &&
+            (role === 'admin' || role === 'superadmin') &&
             <CreateButton basePath={basePath} />
         }
-        {/* <Button color="primary" onClick={() => console.log('Custom Action clicked')}>Custom Action</Button> */}
     </CardActions>
 )};

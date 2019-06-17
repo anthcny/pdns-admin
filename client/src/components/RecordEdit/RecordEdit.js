@@ -6,9 +6,10 @@ import moment from 'moment';
 moment.locale('ru');
 
 export const RecordEdit = props => {
+    const {from: from_string} = parse(props.location.search);
     const { domain_id: domain_id_string } = parse(props.location.search);
     const domain_id = domain_id_string ? parseInt(domain_id_string, 10) : '';
-    const redirect = typeof domain_id === 'number' ? `/domains/${domain_id}/show/1` : 'show';
+    const redirect = typeof domain_id === 'number' ? `/domains/${domain_id}/${from_string === 'edit' ? '' : 'show/'}1` : 'show';
 
     return (
         <Edit 

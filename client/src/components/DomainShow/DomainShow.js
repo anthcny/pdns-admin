@@ -2,8 +2,9 @@ import React from 'react';
 import { 
     TabbedShowLayout, Show,
     ReferenceManyField, Datagrid, EditButton , BooleanField, TextField,
-    Tab,
+    Tab, Button, Link,
 } from 'react-admin';
+import EditIcon from "@material-ui/icons/Edit";
 import {DomainShowActions} from './DomainShowActions';
 
 export const DomainShow = props => (
@@ -23,10 +24,27 @@ export const DomainShow = props => (
                         <TextField source="content" />
                         <TextField source="ttl" label="TTL" />
                         <TextField source="type" />
-                        <EditButton />
+                        {/* <EditButton /> */}
+                        <RecordEditButton />
                     </Datagrid>
                 </ReferenceManyField>
             </Tab>
         </TabbedShowLayout>
     </Show>
 );
+
+const RecordEditButton = props => {
+    const {id, domain_id} = props.record || {};
+
+    return (
+        <Button
+            component={Link}
+            to={{
+                pathname: `/records/${id}`,
+                search: typeof domain_id === 'number' && `?domain_id=${domain_id}`
+            }}
+            label="Edit"
+        >
+            <EditIcon />
+        </Button>
+)};

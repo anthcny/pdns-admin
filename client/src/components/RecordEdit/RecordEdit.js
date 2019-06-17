@@ -1,21 +1,25 @@
 import React from 'react';
 import { 
-    Create, SimpleForm, TextInput, SelectInput, BooleanInput, 
-    Toolbar, SaveButton, RefreshButton
+    Edit, SimpleForm, TextInput, SelectInput, BooleanInput, CardActions,
+    ListButton,
 } from 'react-admin';
+import {DomainShowActions} from '../DomainShow/DomainShowActions';
 import { parse } from "query-string";
 
-export const RecordCreate = props => {
+export const RecordEdit = props => {
     const { domain_id: domain_id_string } = parse(props.location.search);
     const domain_id = domain_id_string ? parseInt(domain_id_string, 10) : '';
     const redirect = typeof domain_id === 'number' ? `/domains/${domain_id}/show/1` : 'show';
 
     return (
-        <Create {...props} title="Create new record">
+        <Edit 
+            {...props} title="Edit record"
+            actions={<DomainShowActions data={domain_id} basePath={redirect} useCancel={'cancel edit'}/>}
+        >
             <SimpleForm 
-                validate={validateRecordCreation} 
+                validate={validateRecordEdition} 
                 redirect={redirect} 
-                defaultValue={{...defaultValues, domain_id}}
+                // defaultValue={{. domain_id}}
                 // toolbar={<RecordCreateToolbar />}
             >
                 <TextInput source="name" />
@@ -24,10 +28,10 @@ export const RecordCreate = props => {
                 <TextInput source="content" />
                 <BooleanInput source="disabled" label="Disabled"/>
             </SimpleForm>
-        </Create>
+        </Edit>
 )};
 
-const validateRecordCreation = (values) => {
+const validateRecordEdition = (values) => {
     const errors = {};
     if (!values.name) {
         errors.name = ['Required'];
@@ -44,22 +48,17 @@ const validateRecordCreation = (values) => {
     return errors
 };
 
-const defaultValues = {
-    type: 'A',
-    disabled: false,
-};
-
 const typeChoices = [
     { id: 'A', name: 'A' },
     { id: 'NS', name: 'NS' },
     { id: 'MX', name: 'MX' },
-]
+];
 
-// const RecordCreateToolbar = props => {
-//     // const { data } = props;
+// export const RecordEditActions = ({ basePath, data }) => {
+//     console.log('RecordEditActions', { basePath, data });
 //     return (
-//     <Toolbar {...props}>
-//        <SaveButton/>
-//        <RefreshButton/>
-//     </Toolbar>
+//     <CardActions>
+//         <ListButton basePath={basePath} />
+//         <RecordCreateButton domain={data}/>
+//     </CardActions>
 // )};

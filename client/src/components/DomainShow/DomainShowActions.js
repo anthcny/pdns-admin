@@ -3,12 +3,12 @@ import AddIcon from "@material-ui/icons/Add";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { CardActions, ListButton, Button, Link } from 'react-admin';
 
-export const DomainShowActions = ({ basePath, data, useCancel }) => (
+export const DomainShowActions = ({ basePath, data, useCancel, listLabel }) => (
     <CardActions>
         {
             useCancel 
             ? <CancelButton basePath={basePath} label={useCancel}/>
-            : <ListButton basePath={basePath} />
+            : <ListButton basePath={basePath} label={listLabel}/>
         }
         <RecordCreateButton domain={data}/>
     </CardActions>

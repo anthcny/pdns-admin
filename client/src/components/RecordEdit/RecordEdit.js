@@ -1,8 +1,5 @@
 import React from 'react';
-import { 
-    Edit, SimpleForm, TextInput, SelectInput, BooleanInput, CardActions,
-    ListButton,
-} from 'react-admin';
+import { Edit, SimpleForm, TextInput, SelectInput, BooleanInput } from 'react-admin';
 import {DomainShowActions} from '../DomainShow/DomainShowActions';
 import { parse } from "query-string";
 
@@ -14,13 +11,11 @@ export const RecordEdit = props => {
     return (
         <Edit 
             {...props} title="Edit record"
-            actions={<DomainShowActions data={domain_id} basePath={redirect} useCancel={'cancel edit'}/>}
+            actions={<DomainShowActions data={domain_id} basePath={redirect} useCancel={'cancel edit'} listLabel={'records'}/>}
         >
             <SimpleForm 
                 validate={validateRecordEdition} 
-                redirect={redirect} 
-                // defaultValue={{. domain_id}}
-                // toolbar={<RecordCreateToolbar />}
+                redirect={redirect}
             >
                 <TextInput source="name" />
                 <SelectInput source="type" choices={typeChoices}/>
@@ -53,12 +48,3 @@ const typeChoices = [
     { id: 'NS', name: 'NS' },
     { id: 'MX', name: 'MX' },
 ];
-
-// export const RecordEditActions = ({ basePath, data }) => {
-//     console.log('RecordEditActions', { basePath, data });
-//     return (
-//     <CardActions>
-//         <ListButton basePath={basePath} />
-//         <RecordCreateButton domain={data}/>
-//     </CardActions>
-// )};

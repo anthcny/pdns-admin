@@ -1,9 +1,10 @@
 import React from 'react';
-import AddIcon from "@material-ui/icons/Add";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { CardActions, ListButton, Button, Link } from 'react-admin';
 
-export const DomainEditActions = ({ basePath, data, useCancel, listLabel, permissons }) => (
+export const DomainEditActions = ({ basePath, data, useCancel, listLabel }) => (
     <CardActions>
         {
             useCancel 
@@ -11,7 +12,10 @@ export const DomainEditActions = ({ basePath, data, useCancel, listLabel, permis
             : <ListButton basePath={basePath} label={listLabel}/>
         }
         <RecordCreateButton domain={data}/>
-        <AddUserButton domain={data}/>
+        {
+            checkPermissionForAddManager(data && data.id) &&
+                <AddUserButton domain={data}/>
+        }
     </CardActions>
 );
 
@@ -24,7 +28,7 @@ const AddUserButton = ({ domain }) => (
         }}
         label="Add manager"
     >
-        <AddIcon />
+        <PersonAddIcon />
     </Button>
 );
 
@@ -37,7 +41,7 @@ const RecordCreateButton = ({ domain }) => (
         }}
         label="Add new record"
     >
-        <AddIcon />
+        <PlaylistAddIcon />
     </Button>
 );
 
@@ -50,3 +54,16 @@ const CancelButton = ({ basePath, label }) => (
         <CancelIcon />
     </Button>
 );
+
+const checkPermissionForAddManager = domain_id => {
+    const username = localStorage.getItem('username');
+    let db = localStorage.getItem('data');
+    if(db) {
+        db = JSON.parse(db);
+        const { domains } = db;
+        const domain = domains &&
+            domains.find(d => d.id === domain_id && d.author === username);
+        if(domain) return true;
+    }
+    return false;
+}

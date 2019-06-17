@@ -28,20 +28,20 @@ const App = () => (
     history={history}
     authProvider={authProvider}
   >
-      <Resource 
-        name="users" list={UserList} 
-        icon={UserIcon} show={ShowGuesser} 
-        create={UserCreate} edit={UserEdit}
-      />
-      <Resource 
-        name="domains" list={DomainList} 
-        show={DomainShow} 
-        create={permissionsCheck() === 'user' ? null : DomainCreate} 
-        edit={DomainEdit}
-      />
-      <Resource name="records" create={RecordCreate} edit={RecordEdit} show={RecordShow}/>
-      <Resource name="managers" create={ManagerCreate}/>
-      <Resource name="history" list={HistoryList} icon={HistoryIcon}/>
+    <Resource 
+      name="domains" list={DomainList} 
+      show={DomainShow} 
+      create={permissionsCheck() === 'user' ? null : DomainCreate} 
+      edit={DomainEdit}
+    />
+    <Resource 
+      name="users" list={UserList} 
+      icon={UserIcon} show={ShowGuesser} 
+      create={UserCreate} edit={UserEdit}
+    />
+    <Resource name="records" create={RecordCreate} edit={RecordEdit} show={RecordShow}/>
+    <Resource name="managers" create={ManagerCreate}/>
+    <Resource name="history" list={HistoryList} icon={HistoryIcon} show={ShowGuesser}/>
   </Admin>
 )
 

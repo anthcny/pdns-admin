@@ -4,9 +4,11 @@ import { permissionsCheck } from '../../helpers';
 import moment from 'moment';
 moment.locale('ru');
 
-export const UserCreate = props => (
+export const UserCreate = props => {
+    const { basePath } = props;
+    return (
     <Create {...props} title="Create new user">
-        <SimpleForm validate={validateUserCreation} redirect="users" defaultValue={userDefaultValue}>
+        <SimpleForm validate={validateUserCreation} redirect={basePath} defaultValue={userDefaultValue}>
             <TextInput source="username" />
             <TextInput source="password" type="password"/>
             <SelectInput source="role" label="Permissions" choices={getPermissionChoices()} />
@@ -14,7 +16,7 @@ export const UserCreate = props => (
             {/* <TextInput label="Repeat password" type="password"/> */}
         </SimpleForm>
     </Create>
-);
+)};
 
 const validateUserCreation = (values) => {
     const errors = {};

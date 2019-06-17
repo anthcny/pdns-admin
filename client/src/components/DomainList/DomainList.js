@@ -8,7 +8,6 @@ import { permissionsCheck } from '../../helpers';
 
 export const DomainList = props => {
     const role = permissionsCheck();
-    {console.log('seseeeee', props)}
     return (
         <List 
             {...props} 

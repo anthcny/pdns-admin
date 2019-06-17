@@ -13,7 +13,7 @@ export const DomainShow = props => {
 
     return (
         <Show {...props} title="Edit domain" 
-            actions={<DomainShowActions listLabel='domains'/>}
+            actions={<DomainShowActions listLabel='domains' domain_id={id}/>}
         >
             <TabbedShowLayout>
                 <Tab label="Domain">

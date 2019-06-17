@@ -17,15 +17,15 @@
         {  "domain_id": 0, "name": "record3.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" }
     ],
     "managers": [
-        {"domain_id": 1, "username": "admin"},
-        {"domain_id": 1, "username": "root"},
-        {"domain_id": 1, "username": "user"},
-        {"domain_id": 0, "username": "newuser"},
-        {"domain_id": 0, "username": "admin"},
-        {"domain_id": 0, "username": "pdnsadmin"}
+        { "id": 0, "domain_id": 1, "username": "admin"},
+        { "id": 1, "domain_id": 1, "username": "root"},
+        { "id": 2, "domain_id": 1, "username": "user"},
+        { "id": 3, "domain_id": 0, "username": "newuser"},
+        { "id": 4, "domain_id": 0, "username": "admin"},
+        { "id": 5, "domain_id": 0, "username": "pdnsadmin"}
     ],
     "history": [
-        {  "domain_id": 1, "target": "record", "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Add new user" },
-        {  "domain_id": 0, "target": "record",  "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Create new zone" }
+        {  "id": 0, "domain_id": 1, "target": "record", "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Add new user" },
+        {  "id": 1, "domain_id": 0, "target": "record",  "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Create new zone" }
     ]
 }

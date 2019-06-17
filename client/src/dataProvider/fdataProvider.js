@@ -11,6 +11,8 @@ import {
     DELETE,
     DELETE_MANY,
 } from 'react-admin';
+import moment from 'moment';
+moment.locale('ru');
 
 let db = {};
 
@@ -36,6 +38,7 @@ export default (data, loggingEnabled = false) => {
     }
 
     function getResponse(type, resource, params) {
+        // console.log('provider log', {type, resource, params});
         switch (type) {
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
@@ -53,6 +56,7 @@ export default (data, loggingEnabled = false) => {
                 };
             }
             case GET_ONE:
+                // if(params.id === "users") params.id = 0;
                 return {
                     data: restServer.getOne(resource, params.id, { ...params }),
                 };
@@ -79,12 +83,14 @@ export default (data, loggingEnabled = false) => {
             }
             case UPDATE:
                 handleUserAction(resource, params, 'update');
+                historyLog(resource, params, type)
                 return {
                     data: restServer.updateOne(resource, params.id, {
                         ...params.data,
                     }),
                 };
             case UPDATE_MANY:
+                historyLog(resource, params, type)
                 params.ids.forEach(id =>
                     restServer.updateOne(resource, id, {
                         ...params.data,
@@ -92,18 +98,39 @@ export default (data, loggingEnabled = false) => {
                 );
                 return { data: params.ids };
             case CREATE:
-                    handleUserAction(resource, params, 'create');
+                handleUserAction(resource, params, 'create');
+                historyLog(resource, params, type);
                 return {
                     data: restServer.addOne(resource, { ...params.data }),
                 };
             case DELETE:
+                historyLog(resource, params, type)
                 return { data: restServer.removeOne(resource, params.id) };
             case DELETE_MANY:
+                historyLog(resource, params, type)
                 params.ids.forEach(id => restServer.removeOne(resource, id));
                 return { data: params.ids };
             default:
                 return false;
         }
+    }
+
+    function historyLog(resource, params, type) {
+        const username = localStorage.getItem('username');
+        const { data, previousData } = params;
+        // const saveData = data || previousData;
+        // delete saveData.id;
+        data && (delete data.id)
+        previousData && (delete previousData.id)
+        const log = restServer.addOne('history', {
+            newData: data, 
+            previousData,
+            author: username,
+            text: `${type} ${resource}`,
+            time: moment().format('MMMM Do YYYY, h:mm a'),
+        });
+
+        // return console.log('historyLog', log);
     }
 
     /**
@@ -133,7 +160,7 @@ export default (data, loggingEnabled = false) => {
         if (loggingEnabled) {
             log(type, resource, params, response);
         }
-        saveLocal(collection);
+        // saveLocal(collection);
         return new Promise(resolve => resolve(response));
     };
 };
@@ -164,9 +191,4 @@ const handleUserAction = async (resource, params, type) => {
             })
             .catch(e => console.log('Create failed', e));
     }
-}
-
-const handleAction = async (resource, params, type) => {
-    if(resource !== 'mydomains') return;
-
 }

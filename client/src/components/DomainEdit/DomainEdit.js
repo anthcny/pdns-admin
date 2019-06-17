@@ -5,13 +5,18 @@ import {
 } from 'react-admin';
 import EditIcon from "@material-ui/icons/Edit";
 import {DomainEditActions} from './DomainEditActions';
+import moment from 'moment';
+moment.locale('ru');
 
 export const DomainEdit = props => {
     const {basePath, id} = props;
+    const defaultValues = {
+        last_modified: moment().format('MMMM Do YYYY, h:mm a'),
+    }
 
     return (
     <Edit {...props} title="Edit domain" actions={<DomainEditActions listLabel='domains'/>}>
-        <TabbedForm validate={validateDomianEdition}>
+        <TabbedForm validate={validateDomianEdition} defaultValue={defaultValues}>
             <FormTab label="Domain">
                 <TextInput source="name" />
                 <BooleanInput source="dnssec" label="DNSSEC"/>

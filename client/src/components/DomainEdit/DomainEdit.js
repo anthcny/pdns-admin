@@ -33,7 +33,7 @@ export const DomainEdit = props => {
                         <TextField source="ttl" label="TTL" />
                         <TextField source="type" />
                         <RecordEditButton />
-                        <DeleteButton/>
+                        <DeleteButton redirect={`/domains/${id}/1`}/>
                     </Datagrid>
                 </ReferenceManyField>
             </FormTab>

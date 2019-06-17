@@ -1,15 +1,15 @@
 import React from 'react';
 import { 
     TabbedShowLayout, Show,
-    ReferenceManyField, Datagrid, DeleteButton , BooleanField, TextField,
+    ReferenceManyField, Datagrid, BooleanField, TextField,
     Tab, Button, Link, SingleFieldList, ChipField
 } from 'react-admin';
-import EditIcon from "@material-ui/icons/Edit";
+// import EditIcon from "@material-ui/icons/Edit";
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import {DomainShowActions} from './DomainShowActions';
 
 export const DomainShow = props => {
-    const {basePath, id} = props;
+    const {id} = props;
 
     return (
         <Show {...props} title="Edit domain" 
@@ -48,21 +48,21 @@ export const DomainShow = props => {
         </Show>
 )};
 
-const RecordEditButton = props => {
-    const {id, domain_id} = props.record || {};
+// const RecordEditButton = props => {
+//     const {id, domain_id} = props.record || {};
 
-    return (
-        <Button
-            component={Link}
-            to={{
-                pathname: `/records/${id}`,
-                search: typeof domain_id === 'number' && `?domain_id=${domain_id}`
-            }}
-            label="Edit"
-        >
-            <EditIcon />
-        </Button>
-)};
+//     return (
+//         <Button
+//             component={Link}
+//             to={{
+//                 pathname: `/records/${id}`,
+//                 search: typeof domain_id === 'number' && `?domain_id=${domain_id}`
+//             }}
+//             label="Edit"
+//         >
+//             <EditIcon />
+//         </Button>
+// )};
 
 const RecordShowButton = props => {
     const {id, domain_id} = props.record || {};

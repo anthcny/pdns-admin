@@ -1,5 +1,5 @@
 import React from 'react';
-import { Create, SimpleForm, TextInput, SelectInput, BooleanInput } from 'react-admin';
+import { Create, SimpleForm, TextInput, BooleanInput } from 'react-admin';
 import moment from 'moment';
 moment.locale('ru');
 

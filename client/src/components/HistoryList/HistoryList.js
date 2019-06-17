@@ -1,7 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, SimpleList, Responsive,
-     EditButton, ShowButton, BooleanField, DeleteButton, 
-} from 'react-admin';
+import { List, Datagrid, TextField, ShowButton } from 'react-admin';
 import { permissionsCheck } from '../../helpers';
 
 export const HistoryList = props => {

@@ -83,14 +83,14 @@ export default (data, loggingEnabled = false) => {
             }
             case UPDATE:
                 handleUserAction(resource, params, 'update');
-                historyLog(resource, params, type)
+                historyLog(resource, params, type, 'Edit')
                 return {
                     data: restServer.updateOne(resource, params.id, {
                         ...params.data,
                     }),
                 };
             case UPDATE_MANY:
-                historyLog(resource, params, type)
+                historyLog(resource, params, type, 'Edit')
                 params.ids.forEach(id =>
                     restServer.updateOne(resource, id, {
                         ...params.data,
@@ -99,15 +99,15 @@ export default (data, loggingEnabled = false) => {
                 return { data: params.ids };
             case CREATE:
                 handleUserAction(resource, params, 'create');
-                historyLog(resource, params, type);
+                historyLog(resource, params, type, 'Create new');
                 return {
                     data: restServer.addOne(resource, { ...params.data }),
                 };
             case DELETE:
-                historyLog(resource, params, type)
+                historyLog(resource, params, type, 'Delete')
                 return { data: restServer.removeOne(resource, params.id) };
             case DELETE_MANY:
-                historyLog(resource, params, type)
+                historyLog(resource, params, type, 'Delete')
                 params.ids.forEach(id => restServer.removeOne(resource, id));
                 return { data: params.ids };
             default:
@@ -115,7 +115,7 @@ export default (data, loggingEnabled = false) => {
         }
     }
 
-    function historyLog(resource, params, type) {
+    function historyLog(resource, params, type, text) {
         const username = localStorage.getItem('username');
         const { data, previousData } = params;
         // const saveData = data || previousData;
@@ -126,11 +126,11 @@ export default (data, loggingEnabled = false) => {
             newData: data, 
             previousData,
             author: username,
-            text: `${type} ${resource}`,
+            text: `${text} ${resource.slice(0,-1)}`,
             time: moment().format('MMMM Do YYYY, h:mm a'),
         });
 
-        // return console.log('historyLog', log);
+        return console.log('historyLog', log);
     }
 
     /**
@@ -190,5 +190,14 @@ const handleUserAction = async (resource, params, type) => {
                 return console.log('CREATE SUCCESS!', res);
             })
             .catch(e => console.log('Create failed', e));
+    }
+}
+
+const getItemNameOfResource = resource => {
+    switch(resource){
+        case 'users':
+            return 'user'
+        case 'records':
+            return 'record'
     }
 }

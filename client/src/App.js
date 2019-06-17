@@ -1,5 +1,5 @@
 import React from 'react';
-import { Admin, Resource, ListGuesser, EditGuesser, ShowGuesser} from 'react-admin';
+import { Admin, Resource, ShowGuesser} from 'react-admin';
 import { createBrowserHistory } from 'history';
 import authProvider from './authProvider';
 import UserList from './components/UserList';

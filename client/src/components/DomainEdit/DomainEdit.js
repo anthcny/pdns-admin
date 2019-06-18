@@ -19,6 +19,7 @@ export const DomainEdit = props => {
         <TabbedForm validate={validateDomianEdition} defaultValue={defaultValues}>
             <FormTab label="Domain">
                 <TextInput source="name" />
+                <TextInput source="primary" label="Primary NS"/>
                 <BooleanInput source="dnssec" label="DNSSEC"/>
                 <TextField source="author" />
                 <TextField source="created_at" label='Created at' />
@@ -85,6 +86,9 @@ const validateDomianEdition = (values) => {
     const errors = {};
     if (!values.name) {
         errors.name = ['Required'];
+    }
+    if (!values.primary) {
+        errors.primary = ['Required'];
     }
     return errors
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit, SimpleForm, TextInput, SelectInput, BooleanInput } from 'react-admin';
+import { Edit, SimpleForm, TextInput, SelectInput, BooleanInput, LongTextInput } from 'react-admin';
 import {DomainShowActions} from '../DomainShow/DomainShowActions';
 import { parse } from "query-string";
 import moment from 'moment';
@@ -24,7 +24,7 @@ export const RecordEdit = props => {
                 <TextInput source="name" />
                 <SelectInput source="type" choices={typeChoices}/>
                 <TextInput source="ttl" label="TTL"/>
-                <TextInput source="content" />
+                <LongTextInput source="content" />
                 <BooleanInput source="disabled" label="Disabled"/>
             </SimpleForm>
         </Edit>
@@ -37,6 +37,9 @@ const validateRecordEdition = (values) => {
     }
     if (!values.type) {
         errors.type = ['Required'];
+    }
+    if (!Number.isInteger(+values.ttl)) {
+        errors.ttl = ['Number field'];
     }
     if (!values.ttl) {
         errors.ttl = ['Required'];
@@ -54,7 +57,11 @@ const defaultValues = {
 };
 
 const typeChoices = [
-    { id: 'A', name: 'A' },
     { id: 'NS', name: 'NS' },
+    { id: 'SOA', name: 'SOA' },
+    { id: 'A', name: 'A' },
     { id: 'MX', name: 'MX' },
+    { id: 'CNAME', name: 'CNAME' },
+    { id: 'PTR', name: 'PTR' },
+    { id: 'SRV', name: 'SRV' },
 ];

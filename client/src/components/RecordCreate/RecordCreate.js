@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-    Create, SimpleForm, TextInput, SelectInput, BooleanInput, 
+    Create, SimpleForm, TextInput, SelectInput, BooleanInput, LongTextInput,
 } from 'react-admin';
 import { parse } from "query-string";
 import moment from 'moment';
@@ -22,7 +22,7 @@ export const RecordCreate = props => {
                 <TextInput source="name" />
                 <SelectInput source="type" choices={typeChoices}/>
                 <TextInput source="ttl" label="TTL"/>
-                <TextInput source="content" />
+                <LongTextInput source="content" />
                 <BooleanInput source="disabled" label="Disabled"/>
             </SimpleForm>
         </Create>
@@ -36,6 +36,9 @@ const validateRecordCreation = (values) => {
     if (!values.type) {
         errors.type = ['Required'];
     }
+    if (!Number.isInteger(+values.ttl)) {
+        errors.ttl = ['Number field'];
+    }
     if (!values.ttl) {
         errors.ttl = ['Required'];
     }
@@ -48,14 +51,18 @@ const validateRecordCreation = (values) => {
 const username = localStorage.getItem('username');
 
 const defaultValues = {
-    type: 'A',
+    type: 'NS',
     disabled: false,
     created_at: moment().format('MMMM Do YYYY, h:mm a') + `${username && (' by ' + username)}`,
     last_modified: 'no modified',
 };
 
 const typeChoices = [
-    { id: 'A', name: 'A' },
     { id: 'NS', name: 'NS' },
+    { id: 'SOA', name: 'SOA' },
+    { id: 'A', name: 'A' },
     { id: 'MX', name: 'MX' },
+    { id: 'CNAME', name: 'CNAME' },
+    { id: 'PTR', name: 'PTR' },
+    { id: 'SRV', name: 'SRV' },
 ];

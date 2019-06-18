@@ -5,27 +5,64 @@
         { "id": 2, "username": "admin", "role":"admin",  "email": "admin@pdns.com" }
     ],
     "domains": [
-        { "id": 0, "name": "example.com", "type": "master", "primary": "ns1.example.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "root", "last_modified": "no modified", "users": ["admin","user", "root"]},
-        { "id": 1, "name": "pstu.ru", "type": "master", "primary": "ns1.example.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "root", "last_modified": "no modified", "users": [{"username":"admin"}, {"username":"user"}, {"username":"root"}] }
+        { "id": 0, "name": "example.com", "type": "master", "primary": "ns1.example.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "root", "last_modified": "no modified" },
+        { "id": 1, "name": "pstu.ru", "type": "master", "primary": "ns1.pstu.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "user", "last_modified": "no modified" },
+        { "id": 2, "name": "newdomain.com", "type": "master", "primary": "ns1.newdomain.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "pdnsadmin", "last_modified": "no modified" },
+        { "id": 3, "name": "rootd.ru", "type": "master", "primary": "ns1.rootd.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "admin", "last_modified": "no modified" },
+        { "id": 4, "name": "linuxsystems.com", "type": "master", "primary": "ns1.linuxsystems.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "newuser", "last_modified": "no modified" },
+        { "id": 5, "name": "donothing.ru", "type": "master", "primary": "ns1.examdonothing.com", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "pdnsadmin", "last_modified": "no modified" },
+        { "id": 6, "name": "someelse.org", "type": "master", "primary": "ns1.someelse.com", "dnssec": true, "created_at": "June 17th 2019, 2:44 pm", "author": "root", "last_modified": "no modified" },
+        { "id": 7, "name": "createdomain.ru", "type": "master", "primary": "ns1.createdomain.ru", "dnssec": false, "created_at": "June 16th 2019, 1:42 pm", "author": "admin", "last_modified": "no modified" }
+        
     ],
     "records": [
         {  "domain_id": 1, "name": "record1.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 17th 2019, 2:44 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
         {  "domain_id": 1, "name": "record2.pstu.ru", "content": "194.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 16th 2019, 2:49 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
         {  "domain_id": 1, "name": "record3.pstu.ru", "content": "194.0.10.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 14th 2019, 2:55 pm by root", "last_modified": "June 15th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record4.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 17th 2019, 2:44 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record5.pstu.ru", "content": "194.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 16th 2019, 2:49 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record6.pstu.ru", "content": "194.0.10.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 14th 2019, 2:55 pm by root", "last_modified": "June 15th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record7.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 17th 2019, 2:44 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record8.pstu.ru", "content": "194.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 16th 2019, 2:49 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record9.pstu.ru", "content": "194.0.10.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 14th 2019, 2:55 pm by root", "last_modified": "June 15th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record10.pstu.ru", "content": "194.0.10.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 17th 2019, 2:44 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record11.pstu.ru", "content": "194.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 16th 2019, 2:49 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 1, "name": "record12.pstu.ru", "content": "194.0.10.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 14th 2019, 2:55 pm by root", "last_modified": "June 15th 2019, 2:46 pm by root" },
         {  "domain_id": 0, "name": "record1.example.org", "content": "192.0.5.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 18th 2019, 2:59 pm by root", "last_modified": "June 19th 2019, 2:46 pm by root" },
         {  "domain_id": 0, "name": "record2.example.org", "content": "192.0.5.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 15th 2019, 2:11 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
-        {  "domain_id": 0, "name": "record3.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" }
+        {  "domain_id": 0, "name": "record3.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record4.example.org", "content": "192.0.5.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 18th 2019, 2:59 pm by root", "last_modified": "June 19th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record5.example.org", "content": "192.0.5.12", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 15th 2019, 2:11 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record6.example.org", "content": "192.0.5.24", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record7.example.org", "content": "192.0.5.1", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 18th 2019, 2:59 pm by root", "last_modified": "June 19th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record8.example.org", "content": "192.0.10.3", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 15th 2019, 2:11 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record9.example.org", "content": "192.0.5.2", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record10.example.org", "content": "192.0.5.10", "disabled": false, "ttl": 86400, "type": "A", "created_at": "June 18th 2019, 2:59 pm by root", "last_modified": "June 19th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record11.example.org", "content": "192.0.5.100", "disabled": false, "ttl": 86400, "type": "SOA", "created_at": "June 15th 2019, 2:11 pm by root", "last_modified": "June 17th 2019, 2:46 pm by root" },
+        {  "domain_id": 0, "name": "record12.example.org", "content": "192.0.5.16", "disabled": true, "ttl": 86400, "type": "NS", "created_at": "June 17th 2019, 2:48 pm by root", "last_modified": "June 18th 2019, 2:46 pm by root" }
     ],
     "managers": [
         { "id": 0, "domain_id": 1, "username": "admin"},
         { "id": 1, "domain_id": 1, "username": "root"},
         { "id": 2, "domain_id": 1, "username": "user"},
         { "id": 3, "domain_id": 0, "username": "newuser"},
-        { "id": 4, "domain_id": 0, "username": "admin"},
-        { "id": 5, "domain_id": 0, "username": "pdnsadmin"}
+        { "id": 4, "domain_id": 0, "username": "new"},
+        { "id": 5, "domain_id": 0, "username": "pdnsadmin"},
+        { "id": 6, "domain_id": 2, "username": "admin"},
+        { "id": 7, "domain_id": 2, "username": "root"},
+        { "id": 8, "domain_id": 3, "username": "user"},
+        { "id": 9, "domain_id": 3, "username": "newuser"},
+        { "id": 10, "domain_id": 4, "username": "new"},
+        { "id": 11, "domain_id": 4, "username": "pdnsadmin"},
+        { "id": 12, "domain_id": 5, "username": "admin"},
+        { "id": 13, "domain_id": 5, "username": "root"},
+        { "id": 14, "domain_id": 6, "username": "user"},
+        { "id": 15, "domain_id": 6, "username": "newuser"},
+        { "id": 16, "domain_id": 7, "username": "new"},
+        { "id": 17, "domain_id": 7, "username": "pdnsadmin"}
     ],
     "history": [
-        {  "id": 0, "domain_id": 1, "target": "record", "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Add new user" },
-        {  "id": 1, "domain_id": 0, "target": "record",  "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Create new zone" }
+        {  "id": 0, "target": "record", "time": "June 18th 2019, 2:46 pm", "author": "admin", "text": "Add new user" },
+        {  "id": 1, "target": "domain",  "time": "June 18th 2019, 2:46 pm", "author": "root", "text": "Create new domain" }
     ]
 }

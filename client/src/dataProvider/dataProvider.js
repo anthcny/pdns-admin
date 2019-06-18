@@ -4,10 +4,10 @@ import db from '../db.json';
 
 console.log('database', db);
 
-// let localdb = localStorage.getItem('db');
-// localdb = JSON.parse(localdb);
+let localdb = localStorage.getItem('db');
+localdb = localdb ? JSON.parse(localdb) : db;
 
-export const dataProvider = fakeDataProvider(db);
+export const dataProvider = fakeDataProvider(localdb);
 
 // // in myRestProvider.js
 // import { stringify } from 'query-string';

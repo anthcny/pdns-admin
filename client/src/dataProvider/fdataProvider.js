@@ -160,7 +160,7 @@ export default (data, loggingEnabled = false) => {
         if (loggingEnabled) {
             log(type, resource, params, response);
         }
-        // saveLocal(collection);
+        saveLocal(collection);
         return new Promise(resolve => resolve(response));
     };
 };

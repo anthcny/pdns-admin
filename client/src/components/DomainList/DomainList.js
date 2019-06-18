@@ -24,8 +24,8 @@ export const DomainList = props => {
                         <TextField source="primary"/>
                         {/* {role === 'user' && <ShowButton/>} */}
                         <ShowButton/>
-                        {(role === 'admin' || role === 'superadmin') && <EditButton />}
-                        {(role === 'admin' || role === 'superadmin') && <DeleteButton />}
+                        {(role === 'superadmin') && <EditButton />}
+                        {(role === 'superadmin') && <DeleteButton />}
                     </Datagrid>
                 }
                 small={

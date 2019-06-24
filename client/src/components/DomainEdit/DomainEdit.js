@@ -19,11 +19,16 @@ export const DomainEdit = props => {
         <TabbedForm validate={validateDomianEdition} defaultValue={defaultValues}>
             <FormTab label="Domain">
                 <TextInput source="name" />
-                <TextInput source="primary" label="Primary NS"/>
+                <TextInput source="refresh" />
+                <TextInput source="ttl" label="TTL" />
+                <TextInput source="expire" />
+                <TextInput source="retry" />
+                <TextInput source="primary"/>
+                <TextInput source="email"/>
                 <BooleanInput source="dnssec" label="DNSSEC"/>
-                <TextField source="author" />
+                {/* <TextField source="author" label='Owner'/>
                 <TextField source="created_at" label='Created at' />
-                <TextField source="last_modified" label='Last modified' />
+                <TextField source="last_modified" label='Last modified' /> */}
             </FormTab>
             <FormTab label="Records">
                 <ReferenceManyField reference="records" target="domain_id" addLabel={false}>

@@ -24,6 +24,7 @@ export const RecordEdit = props => {
                 <TextInput source="name" />
                 <SelectInput source="type" choices={typeChoices}/>
                 <TextInput source="ttl" label="TTL"/>
+                <TextInput source="priority"/>
                 <LongTextInput source="content" />
                 <BooleanInput source="disabled" label="Disabled"/>
             </SimpleForm>
@@ -37,6 +38,12 @@ const validateRecordEdition = (values) => {
     }
     if (!values.type) {
         errors.type = ['Required'];
+    }
+    if (!Number.isInteger(+values.priority)) {
+        errors.priority = ['Number field'];
+    }
+    if (!values.priority) {
+        errors.priority = ['Required'];
     }
     if (!Number.isInteger(+values.ttl)) {
         errors.ttl = ['Number field'];
@@ -58,10 +65,11 @@ const defaultValues = {
 
 const typeChoices = [
     { id: 'NS', name: 'NS' },
-    { id: 'SOA', name: 'SOA' },
+    // { id: 'SOA', name: 'SOA' },
     { id: 'A', name: 'A' },
     { id: 'MX', name: 'MX' },
     { id: 'CNAME', name: 'CNAME' },
     { id: 'PTR', name: 'PTR' },
     { id: 'SRV', name: 'SRV' },
+    { id: 'AAAA', name: 'AAAA' },
 ];

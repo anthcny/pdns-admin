@@ -20,7 +20,7 @@ export const DomainShow = props => {
                     <TextField source="name" />
                     <BooleanField source="dnssec" label="DNSSEC"/>
                     <TextField source="primary" label="Primary NS"/>
-                    <TextField source="author" />
+                    <TextField source="author" label='Owner'/>
                     <TextField source="created_at" label='Created at' />
                     <TextField source="last_modified" label='Last modified' />
                 </Tab>

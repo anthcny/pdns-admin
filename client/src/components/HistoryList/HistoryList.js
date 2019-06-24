@@ -8,11 +8,13 @@ export const HistoryList = props => {
         <List 
             {...props} 
             bulkActionButtons={false}
+            perPage={5}
+            exporter={false}
         >
             <Datagrid>
                 <TextField source="author"/>
                 <TextField source="time" />
-                <TextField source="text" />
+                <TextField source="text" label="Action"/>
                 <ShowButton/>
             </Datagrid>
         </List>

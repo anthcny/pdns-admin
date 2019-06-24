@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, SimpleList, Responsive, EditButton, ShowButton } from 'react-admin';
+import { List, Datagrid, TextField, SimpleList, Responsive, EditButton, ShowButton, DeleteButton } from 'react-admin';
 import UserActions from './UserActions';
 import UserBulkActions from './UserBulkActions';
 import { permissionsCheck } from '../../helpers';
@@ -17,6 +17,7 @@ export const UserList = props => {
                         <TextField source="email" />
                         <ShowButton/>
                         {(role === 'admin' || role === 'superadmin') && <EditButton />}
+                        {(role === 'superadmin') && <DeleteButton />}
                     </Datagrid>
                 }
                 small={

@@ -7,7 +7,12 @@ export const DomainCreate = props => (
     <Create {...props} title="Create new master zone">
         <SimpleForm validate={validateDomianCreation} redirect="users" defaultValue={defaultValues}>
             <TextInput source="name" />
-            <TextInput source="primary" label="Primary NS"/>
+            <TextInput source="refresh" />
+            <TextInput source="ttl" label="TTL" />
+            <TextInput source="expire" />
+            <TextInput source="retry" />
+            <TextInput source="primary"/>
+            <TextInput source="email"/>
             <BooleanInput source="dnssec" label="DNSSEC"/>
         </SimpleForm>
     </Create>

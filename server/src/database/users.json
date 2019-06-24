@@ -7,16 +7,53 @@
 		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJVaWQiOiIwMDAifSwiaWF0IjoxNTYwNTE1MTczfQ.0a8y_Ahv8YSfc_DLrbjP1kYnXd11DkpSzyFrq6S0IyQ"
 	},
 	"user": {
+		"createdAtUtc": 1561231253805,
+		"uid": "da7554e0-9522-11e9-9313-4fd533608a05",
+		"email": "simpleuser@mail.ruasdd",
 		"password": "user",
 		"role": "user",
-		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7fSwiaWF0IjoxNTYwNTE1NDE5fQ.rs2oG2JLXRTCIVMcUisW-f83KaJmGyC0KJefiWAGq2s"
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJVaWQiOiJkYTc1NTRlMC05NTIyLTExZTktOTMxMy00ZmQ1MzM2MDhhMDUifSwiaWF0IjoxNTYxMjk4ODc0fQ.RpNxlzg4bVgNCKZIzkm78WH5rneYb7dakKHW5aAtdrA"
 	},
 	"admin": {
-		"createdAtUtc": 1560805622499,
-		"uid": "da6e0330-9143-11e9-87d3-5b41fc231684",
-		"email": "admin@pdns.com",
+		"createdAtUtc": 1561299278364,
+		"uid": "3c4125c0-95c1-11e9-9313-4fd533608a05",
+		"email": "admin@pdns1.com",
 		"password": "admin",
-		"role": "admin",
-		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJVaWQiOiJkYTZlMDMzMC05MTQzLTExZTktODdkMy01YjQxZmMyMzE2ODQifSwiaWF0IjoxNTYwODA1NjMzfQ.bfrRzKJ-timjU7ZbU0ZOwY23rQmkgAa27jwqc7k1DjI"
+		"role": "admin"
+	},
+	"demonstrationUser": {
+		"createdAtUtc": 1560863045968,
+		"uid": "8d7c7a30-91c9-11e9-958a-334827906da2",
+		"email": "adeag@geopak.ru",
+		"password": "demo",
+		"role": "user"
+	},
+	"unnamed": {
+		"createdAtUtc": 1561279549426,
+		"uid": "4ce41d20-9593-11e9-9313-4fd533608a05",
+		"email": "pdnsroot@gmail.com",
+		"password": "unnamed",
+		"role": "user"
+	},
+	"khan": {
+		"createdAtUtc": 1561276221736,
+		"uid": "8d6eea80-958b-11e9-9313-4fd533608a05",
+		"email": "simpleuser@mail.ru",
+		"password": "khan",
+		"role": "admin"
+	},
+	"zoner": {
+		"createdAtUtc": 1561298692179,
+		"uid": "dedc6a30-95bf-11e9-9313-4fd533608a05",
+		"email": "zoner@maill.ru",
+		"password": "zoner",
+		"role": "user"
+	},
+	"simpleuser": {
+		"createdAtUtc": 1561299121384,
+		"uid": "deafe680-95c0-11e9-9313-4fd533608a05",
+		"email": "simple@user.com",
+		"password": "simpleuser",
+		"role": "user"
 	}
 }

@@ -4,7 +4,7 @@ import db from '../db.json';
 
 console.log('database', db);
 
-let localdb = localStorage.getItem('db');
+let localdb = localStorage.getItem('data');
 localdb = localdb ? JSON.parse(localdb) : db;
 
 export const dataProvider = fakeDataProvider(localdb);

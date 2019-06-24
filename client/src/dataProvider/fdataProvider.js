@@ -126,8 +126,9 @@ export default (data, loggingEnabled = false) => {
             newData: data, 
             previousData,
             author: username,
-            text: `${text} ${resource.slice(0,-1)}`,
+            text: getHistoryText(resource, `${text} ${resource.slice(0,-1)}`, params),
             time: moment().format('MMMM Do YYYY, h:mm a'),
+            target: resource,
         });
 
         return console.log('historyLog', log);
@@ -193,11 +194,20 @@ const handleUserAction = async (resource, params, type) => {
     }
 }
 
-const getItemNameOfResource = resource => {
+const getHistoryText = (resource, text, params) => {
+    let db = localStorage.getItem('data');
+    db = JSON.parse(db);
+    const {data, previousData} = params;
+    const dataPropertName = previousData ? 'previousData' : 'data';
+    if(!data && !previousData) return '';
     switch(resource){
         case 'users':
-            return 'user'
-        case 'records':
-            return 'record'
+            return `${text} "${previousData ? previousData.username : (data && data.username)}"`;
+        case 'domains':
+            const domain = previousData ? previousData.name : (data && data.name);
+            return `${text} ${domain}`;
+        default:
+            const zone = db.domains.find(zone => zone.id === +params[dataPropertName].domain_id)
+            return `${text} for domain ${zone && zone.name}`;
     }
 }

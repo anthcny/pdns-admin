@@ -17,6 +17,7 @@ import RecordEdit from './components/RecordEdit';
 import RecordShow from './components/RecordShow';
 import ManagerCreate from './components/ManagerCreate';
 import HistoryList from './components/HistoryList';
+import HistoryShow from  './components/HistoryShow';
 import { permissionsCheck } from './helpers';
 
 const history = createBrowserHistory();
@@ -41,7 +42,7 @@ const App = () => (
     />
     <Resource name="records" create={RecordCreate} edit={RecordEdit} show={RecordShow}/>
     <Resource name="managers" create={ManagerCreate}/>
-    <Resource name="history" list={HistoryList} icon={HistoryIcon} show={ShowGuesser}/>
+    <Resource name="history" options={{label:'History'}} list={HistoryList} icon={HistoryIcon} show={HistoryShow}/>
   </Admin>
 )
 

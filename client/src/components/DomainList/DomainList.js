@@ -13,6 +13,7 @@ export const DomainList = props => {
             {...props} 
             actions={<UserActions />} 
             bulkActionButtons={<DomainBulkActions />}
+            perPage={5}
         >
             <Responsive
                 medium={
@@ -21,7 +22,7 @@ export const DomainList = props => {
                         <TextField source="name"/>
                         <BooleanField source="dnssec" label="DNSSEC" />
                         <TextField source="type" />
-                        <TextField source="primary"/>
+                        <TextField source="author" label="Owner"/>
                         {/* {role === 'user' && <ShowButton/>} */}
                         <ShowButton/>
                         {(role === 'superadmin') && <EditButton />}

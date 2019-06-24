@@ -17,6 +17,7 @@ export const RecordShow = props => {
                 <TextField source="name" />
                 <TextField source="type"/>
                 <TextField source="ttl" label="TTL"/>
+                <TextField source="priority"/>
                 <TextField source="content" />
                 <BooleanField source="disabled" label="Disabled"/>
                 <TextField source="created_at" label='Created at' />

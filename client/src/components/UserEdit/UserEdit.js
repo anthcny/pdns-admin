@@ -1,11 +1,12 @@
 import React from 'react';
-import { Edit, SimpleForm, TextInput, SelectInput, TextField } from 'react-admin';
+import { Edit, SimpleForm, TextInput, SelectInput, TextField, CardActions, Button, Link } from 'react-admin';
 import { permissionsCheck } from '../../helpers';
+import ListIcon from "@material-ui/icons/List";
 
 export const UserEdit = props => {
     const role = permissionsCheck();
     return (
-    <Edit {...props} title="User edition">
+    <Edit {...props} title="User edition" actions={<UserEditActions/>}>
         <SimpleForm validate={validateUserEdit} redirect="/users">
             <TextField source="username" />
             {
@@ -37,3 +38,17 @@ const validateUserEdit = (values) => {
     }
     return errors
 };
+
+const UserEditActions = () => (
+    <CardActions>
+        <Button
+            component={Link}
+            to={{ 
+                pathname: '/users',
+            }}
+            label="Users"
+        >
+            <ListIcon />
+        </Button>
+    </CardActions>
+);

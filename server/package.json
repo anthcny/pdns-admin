@@ -39,7 +39,7 @@
     "@types/uuid": "^3.4.3",
     "jest": "24.7.1",
     "nodemon": "^1.17.2",
-    "standard-version": "^4.3.0",
+    "standard-version": "^8.0.1",
     "supertest": "^3.0.0",
     "ts-jest": "24.0.2",
     "ts-node": "^5.0.1",

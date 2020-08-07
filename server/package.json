@@ -21,7 +21,7 @@
     "@nestjs/microservices": "^4.6.6",
     "@nestjs/testing": "^4.6.6",
     "@nestjs/websockets": "^4.6.6",
-    "class-transformer": "^0.1.9",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.8.5",
     "fakerest": "^2.1.0",
     "jsonwebtoken": "^8.2.0",
